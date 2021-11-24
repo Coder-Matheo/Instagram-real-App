@@ -19,12 +19,14 @@ import rob.instagramapprealdemo.R;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     Context mContext;
     List<struct> mData;
+    private RecyclerViewClickInterface recyclerViewClickInterface;
     private static final String TAG = RecyclerViewAdapter.class.getSimpleName();
 
 
-    public RecyclerViewAdapter(Context mContext, List<struct> mData) {
+    public RecyclerViewAdapter(Context mContext, List<struct> mData, RecyclerViewClickInterface recyclerViewClickInterface1) {
         this.mContext = mContext;
         this.mData = mData;
+        this.recyclerViewClickInterface=recyclerViewClickInterface1;
     }
 
     @NonNull
@@ -50,7 +52,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public  class MyViewHolder extends RecyclerView.ViewHolder{
+        LinearLayout linearLayout;
         TextView tv_username;
         TextView tv_post_message;
         ImageView img_post;
@@ -61,7 +64,28 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             tv_username = itemView.findViewById(R.id.user_item_id);
             tv_post_message = itemView.findViewById(R.id.post_message_id);
             img_post = itemView.findViewById(R.id.img_post_item);
-            
+            linearLayout = itemView.findViewById(R.id.linear_item_post_id);
+
+
+
+
+            linearLayout.setOnClickListener(new View.OnClickListener() {
+
+
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    recyclerViewClickInterface.onItemClickInterface(getAdapterPosition());
+                }
+            });
+
+
 
         }
     }

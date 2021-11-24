@@ -38,8 +38,8 @@ public class MainActivity extends MainHelperClass {
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        viewPagerAdapter.AddFragment(new FragmentCalling(), "Post");
         viewPagerAdapter.AddFragment(new FragmentPosting(), "Call");
+        viewPagerAdapter.AddFragment(new FragmentCalling(), "Post");
         viewPagerAdapter.AddFragment(new FragmentPosting(), "Photo");
 
 

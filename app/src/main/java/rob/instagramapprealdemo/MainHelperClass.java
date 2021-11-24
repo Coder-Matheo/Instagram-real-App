@@ -29,43 +29,16 @@ import rob.instagramapprealdemo.roomDatabase.MyInstaDatabase;
 public class MainHelperClass extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
-    List<String> usernameToInitRecycler;
-    List<String> commentsToInitRecycler;
-    List<String> postMessageToInitRecycler;
-    List<String> dateTimeToInitRecycler;
-    List<byte[]> imagePostToInitRecycler;
-    InstaViewModel instaViewModel;
-
-
-
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initial();
         insertPostsFun();
-        getAllPostsFun();
-
-
-
-
-
     }
 
-    public void initial(){
 
-
-        //initial the List Array for putting Value for RecyclerAdapter
-        usernameToInitRecycler = new ArrayList<>();
-        commentsToInitRecycler = new ArrayList<>();
-        postMessageToInitRecycler = new ArrayList<>();
-        dateTimeToInitRecycler = new ArrayList<>();
-        imagePostToInitRecycler = new ArrayList<>();
-
-
-    }
 
     public void insertPostsFun(){
         Resources res = getResources();
@@ -76,7 +49,7 @@ public class MainHelperClass extends AppCompatActivity {
         byte[] bitMapData = stream.toByteArray();
 
         //InstaObj(String username, String password, String comments, String postMessage,String dateTime, byte[] instaImage)
-        InstaObj instaObj = new InstaObj("Mattheo", "123456", "Hi this is nice", "Today was cool", "11.12.2001", bitMapData);
+        InstaObj instaObj = new InstaObj("Matt", "123456", "Heute war sehr Cool", "Today was cool", "11.12.2001", bitMapData);
         InsertAsynTask insertAsynTask = new InsertAsynTask();
         //insertAsynTask.execute(instaObj);
 
@@ -94,28 +67,7 @@ public class MainHelperClass extends AppCompatActivity {
         }
     }
 
-    public void getAllPostsFun() {
-        instaViewModel = ViewModelProviders.of(this).get(InstaViewModel.class);
-        instaViewModel.getAllPosts().observe(this, new Observer<List<InstaObj>>() {
-            @Override
-            public void onChanged(List<InstaObj> instaObjs) {
 
-                for (int i = 0; i < instaObjs.size(); i++){
-                    usernameToInitRecycler.add(instaObjs.get(i).getUsername());
-                    commentsToInitRecycler.add(instaObjs.get(i).getComments());
-                    postMessageToInitRecycler.add(instaObjs.get(i).getPostMessage());
-                    dateTimeToInitRecycler.add(instaObjs.get(i).getDateTime());
-                    imagePostToInitRecycler.add(instaObjs.get(i).getInstaImage());
-                }
-
-                Log.i(TAG, "onChanged: "+ usernameToInitRecycler.toString());
-
-
-
-            }
-        });
-
-    }
 
 
 
