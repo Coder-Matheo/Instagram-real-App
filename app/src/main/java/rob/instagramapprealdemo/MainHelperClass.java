@@ -35,37 +35,12 @@ public class MainHelperClass extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        insertPostsFun();
-    }
-
-
-
-    public void insertPostsFun(){
-        Resources res = getResources();
-        Drawable drawable = res.getDrawable(R.drawable.sqlite_icon);
-        Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        byte[] bitMapData = stream.toByteArray();
-
-        //InstaObj(String username, String password, String comments, String postMessage,String dateTime, byte[] instaImage)
-        InstaObj instaObj = new InstaObj("Matt", "123456", "Heute war sehr Cool", "Today was cool", "11.12.2001", bitMapData);
-        InsertAsynTask insertAsynTask = new InsertAsynTask();
-        //insertAsynTask.execute(instaObj);
-
-
 
     }
 
-    class InsertAsynTask extends AsyncTask<InstaObj, Void, Void> {
-        @Override
-        protected Void doInBackground(InstaObj... times) {
-            MyInstaDatabase.getInstance(getApplicationContext())
-                    .instaDao()
-                    .insert(times[0]);
-            return null;
-        }
-    }
+
+
+
 
 
 

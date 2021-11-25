@@ -1,6 +1,8 @@
 package rob.instagramapprealdemo.TabLayoutPackage;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,8 +44,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tv_username.setText(mData.get(position).getUsername());
         holder.tv_post_message.setText(mData.get(position).getPostMessage());
-        holder.img_post.setImageResource(mData.get(position).getImagePosts());
+        holder.img_post.setImageBitmap(byteImageToBitmap(mData.get(position).getImagePosts()));
 
+    }
+
+    public Bitmap byteImageToBitmap(byte[] imgOfByteParam){
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imgOfByteParam, 0, imgOfByteParam.length);
+        return bitmap;
     }
 
     @Override

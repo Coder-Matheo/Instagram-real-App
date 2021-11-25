@@ -8,7 +8,7 @@ import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 
 import rob.instagramapprealdemo.TabLayoutPackage.FragmentCalling;
-import rob.instagramapprealdemo.TabLayoutPackage.FragmentPosting;
+import rob.instagramapprealdemo.TabLayoutPackage.FragmentPost;
 import rob.instagramapprealdemo.TabLayoutPackage.ViewPagerAdapter;
 
 public class MainActivity extends MainHelperClass {
@@ -38,9 +38,9 @@ public class MainActivity extends MainHelperClass {
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        viewPagerAdapter.AddFragment(new FragmentPosting(), "Call");
+        viewPagerAdapter.AddFragment(new FragmentPost(), "Call");
         viewPagerAdapter.AddFragment(new FragmentCalling(), "Post");
-        viewPagerAdapter.AddFragment(new FragmentPosting(), "Photo");
+        viewPagerAdapter.AddFragment(new FragmentPost(), "Photo");
 
 
 

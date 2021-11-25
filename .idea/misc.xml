@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/NewAndroidCourse/InstagramAppRealDemo/app/src/main/res/drawable/ic_add_circle_outline.xml" value="0.1787037037037037" />
+        <entry key="..\:/NewAndroidCourse/InstagramAppRealDemo/app/src/main/res/drawable/ic_message.xml" value="0.1787037037037037" />
         <entry key="..\:/NewAndroidCourse/InstagramAppRealDemo/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/NewAndroidCourse/InstagramAppRealDemo/app/src/main/res/layout/call_fragment.xml" value="0.19479166666666667" />
         <entry key="..\:/NewAndroidCourse/InstagramAppRealDemo/app/src/main/res/layout/fragment_calling.xml" value="0.3328804347826087" />
