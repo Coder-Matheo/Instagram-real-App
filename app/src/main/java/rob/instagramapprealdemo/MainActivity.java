@@ -3,6 +3,7 @@ package rob.instagramapprealdemo;
 import androidx.appcompat.app.ActionBar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
@@ -38,9 +39,10 @@ public class MainActivity extends MainHelperClass {
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        viewPagerAdapter.AddFragment(new FragmentPost(), "Call");
+
+        viewPagerAdapter.AddFragment(new FragmentPost(this), "Call");
         viewPagerAdapter.AddFragment(new FragmentCalling(), "Post");
-        viewPagerAdapter.AddFragment(new FragmentPost(), "Photo");
+        viewPagerAdapter.AddFragment(new FragmentPost(this), "Photo");
 
 
 
