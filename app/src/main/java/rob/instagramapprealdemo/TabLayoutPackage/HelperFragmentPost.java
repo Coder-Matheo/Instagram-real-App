@@ -1,35 +1,28 @@
 package rob.instagramapprealdemo.TabLayoutPackage;
 
-import static android.app.Activity.RESULT_OK;
-
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.util.Log;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 
+import rob.instagramapprealdemo.LoadImageFrStorages;
 import rob.instagramapprealdemo.R;
 import rob.instagramapprealdemo.roomDatabase.InstaObj;
 import rob.instagramapprealdemo.roomDatabase.MyInstaDatabase;
@@ -40,22 +33,34 @@ public class HelperFragmentPost extends Fragment {
 
     FloatingActionButton floatingActionButton;
     Context context;
+    ImageView dialogLoadImage;
+    Button loadButtonImageDialog;
+    View view;
+    AlertDialog.Builder dialog;
+
 
 
 
     public HelperFragmentPost(Context context) {
         this.context = context;
+
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = getLayoutInflater().inflate(R.layout.dialog_load_image, container, false);
+
+
+
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     public void insertPostsFun(){
-
-
         //InstaObj(String username, String password, String comments, String postMessage,String dateTime, byte[] instaImage)
         InstaObj instaObj = new InstaObj("Mattio", "123456", "Heute war sehr Cool", "Today was cool", "11.12.2001", intImageToImageByteArray(R.drawable.fran1));
         InsertAsynTask insertAsynTask = new InsertAsynTask();
         insertAsynTask.execute(instaObj);
-
-
 
     }
 
@@ -88,57 +93,33 @@ public class HelperFragmentPost extends Fragment {
 
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "Clicked: ");
-                ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        REQUEST_CODE_GALLERY);
 
-                popUpLoadImageFromStorages();
+
+
+                Intent intent = new Intent(context, LoadImageFrStorages.class);
+                startActivity(intent);
+                //popUpLoadImageFromStorages();
+
+
+
 
             }
         });
     }
 
-    private void popUpLoadImageFromStorages() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-        View view = getLayoutInflater().inflate(R.layout.dialog_load_image, null);
-
+    public void popUpLoadImageFromStorages() {
+        dialog = new AlertDialog.Builder(context);
+        view = getLayoutInflater().inflate(R.layout.dialog_load_image, null);
+        loadButtonImageDialog = view.findViewById(R.id.loadImageButtonDialog);
+        dialogLoadImage = (ImageView) view.findViewById(R.id.dialogLoadImageView);
+        dialogLoadImage.setImageResource(R.drawable.fran1);
         dialog.setView(view);
         AlertDialog dialog1 = dialog.create();
         dialog1.show();
 
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_CODE_GALLERY){
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                Intent jumpToStorage = new Intent(Intent.ACTION_PICK);
-                jumpToStorage.setType("image/*");
-                startActivityForResult(jumpToStorage, REQUEST_CODE_GALLERY);
-                Toast.makeText(context, " have Permission", Toast.LENGTH_LONG).show();
-            }else {
-                Toast.makeText(context, "don't have Permission", Toast.LENGTH_LONG).show();
-            }
-            return;
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == REQUEST_CODE_GALLERY && resultCode == RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            try {
-                InputStream inputStream = context.getContentResolver().openInputStream(uri);
-                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                Log.i(TAG, "onActivityResult: "+ bitmap);
-            }catch (FileNotFoundException e){
-                e.printStackTrace();
-            }
-
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
 }
 
 
