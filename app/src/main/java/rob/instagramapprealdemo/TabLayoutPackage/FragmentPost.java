@@ -60,7 +60,7 @@ public class FragmentPost extends HelperFragmentPost implements RecyclerViewClic
 
 
         setValueToRecycler();
-        insertPostsFun();
+
 
 
         //initial the List Array for putting Value for RecyclerAdapter

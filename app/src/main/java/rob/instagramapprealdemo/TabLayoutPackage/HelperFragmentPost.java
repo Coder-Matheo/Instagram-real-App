@@ -56,23 +56,7 @@ public class HelperFragmentPost extends Fragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    public void insertPostsFun(){
-        //InstaObj(String username, String password, String comments, String postMessage,String dateTime, byte[] instaImage)
-        InstaObj instaObj = new InstaObj("Mattio", "123456", "Heute war sehr Cool", "Today was cool", "11.12.2001", intImageToImageByteArray(R.drawable.fran1));
-        InsertAsynTask insertAsynTask = new InsertAsynTask();
-        insertAsynTask.execute(instaObj);
 
-    }
-
-    class InsertAsynTask extends AsyncTask<InstaObj, Void, Void> {
-        @Override
-        protected Void doInBackground(InstaObj... objs) {
-            MyInstaDatabase.getInstance(getContext())
-                    .instaDao()
-                    .insert(objs[0]);
-            return null;
-        }
-    }
 
     public byte[] intImageToImageByteArray(int intImage){
         Resources res = getResources();
