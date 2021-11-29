@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Context;
@@ -17,6 +18,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +39,7 @@ public class LoadImageFrStorages extends AppCompatActivity {
 
     private static final int REQUEST_CODE_GALLERY = 999;
     private static final String TAG = LoadImageFrStorages.class.getSimpleName();
+    private static final int REQUEST_CODE_CAMERA_PERMISSION = 100;
     private ImageButton loadImageButton;
     private Button cancelButton;
     private Button postButton;
@@ -50,8 +53,11 @@ public class LoadImageFrStorages extends AppCompatActivity {
         setContentView(R.layout.load_image_storage);
 
         initial();
+        camera_function();
 
     }
+
+
 
     private void initial() {
         cancelButton = findViewById(R.id.cancelButton);
@@ -84,12 +90,7 @@ public class LoadImageFrStorages extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        imageCameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "onClick imageCamera: ");
-            }
-        });
+
 
     }
 
@@ -118,15 +119,39 @@ public class LoadImageFrStorages extends AppCompatActivity {
                 //Get Image from device and show it ImageView
                 InputStream inputStream = getContentResolver().openInputStream(uri);
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                Bitmap resizeBitmapImage = Bitmap.createScaledBitmap(bitmap, 800, 600, true);
-                loadImageButton.setImageBitmap(resizeBitmapImage);
+
+                Bitmap resizeBitmapImage;
+                int newWidth;
+                int newHeight;
+                if (bitmap.getHeight() < 4000){
+                    newWidth = (int) (bitmap.getWidth()/4);
+                    newHeight = (int) (bitmap.getHeight()/4);
+                    resizeBitmapImage = Bitmap.createScaledBitmap(bitmap, newWidth,newHeight , true);
+                    loadImageButton.setImageBitmap(resizeBitmapImage);
+                }else {
+                    newWidth = (int) (bitmap.getWidth()/6);
+                    newHeight = (int) (bitmap.getHeight()/6);
+                    resizeBitmapImage = Bitmap.createScaledBitmap(bitmap, newWidth,newHeight , true);
+                    loadImageButton.setImageBitmap(resizeBitmapImage);
+                }
+
+
 
             }catch (FileNotFoundException e){
                 e.printStackTrace();
             }
         }
+
+        if (requestCode == REQUEST_CODE_CAMERA_PERMISSION){
+            Bitmap captureImage = (Bitmap) data.getExtras().get("data");
+            int newCaptureHeight = captureImage.getHeight() * 4;
+            int newCaptureWidth = captureImage.getWidth() * 4;
+            Bitmap resizeCameraImage = Bitmap.createScaledBitmap(captureImage, newCaptureWidth, newCaptureHeight, true);
+            loadImageButton.setImageBitmap(resizeCameraImage);
+        }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 
    /* public byte[] intImageToImageByteArray(int intImage){
         Resources res = getResources();
@@ -149,7 +174,7 @@ public class LoadImageFrStorages extends AppCompatActivity {
     public void insertPostsFun(){
         InstaObj instaObj = new InstaObj("Mattio", "123456", "Heute war sehr Cool", loadEditTextMultiLine.getText().toString(), "11.12.2001", imageViewToByte(loadImageButton));
         InsertAsynTask insertAsynTask = new InsertAsynTask();
-        //insertAsynTask.execute(instaObj);
+        insertAsynTask.execute(instaObj);
 
     }
 
@@ -162,5 +187,26 @@ public class LoadImageFrStorages extends AppCompatActivity {
             return null;
         }
     }
+
+    private void camera_function() {
+        //Permission Request, if don't get Permission
+        if(ContextCompat.checkSelfPermission(LoadImageFrStorages.this,
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(LoadImageFrStorages.this,
+                    new String[]{Manifest.permission.CAMERA},
+                    REQUEST_CODE_CAMERA_PERMISSION);
+        }
+        imageCameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "onClick imageCamera: ");
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, REQUEST_CODE_CAMERA_PERMISSION);
+
+            }
+        });
+    }
+
+
 
 }
