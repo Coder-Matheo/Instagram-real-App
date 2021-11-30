@@ -2,14 +2,23 @@ package rob.instagramapprealdemo.TabLayoutPackage;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -25,7 +34,8 @@ public class FragmentPost extends HelperFragmentPost implements RecyclerViewClic
     View view;
     private RecyclerView recyclerView;
     private List<struct> lstPostData;
-
+    Context context;
+    RecyclerViewAdapter recyclerViewAdapter;
     InstaViewModel instaViewModel;
 
 
@@ -37,9 +47,9 @@ public class FragmentPost extends HelperFragmentPost implements RecyclerViewClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_posting, container, false);
+        view = inflater.inflate(R.layout.fragment_post, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstPostData, this);
+        recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstPostData, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
 
@@ -58,15 +68,18 @@ public class FragmentPost extends HelperFragmentPost implements RecyclerViewClic
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setValueToRecycler();
-
-
 
         //initial the List Array for putting Value for RecyclerAdapter
         lstPostData = new ArrayList<>();
         lstPostData.add(new struct("Matt", "Heute war so Cool Programming Day", intImageToImageByteArray(R.drawable.sqlite_icon) ));
+
+        //DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
+        //recyclerView.addItemDecoration(dividerItemDecoration);
+
+
     }
+
 
 
 

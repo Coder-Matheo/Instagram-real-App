@@ -7,6 +7,9 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.SearchView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -25,7 +29,7 @@ import rob.instagramapprealdemo.TabLayoutPackage.FragmentCalling;
 import rob.instagramapprealdemo.TabLayoutPackage.FragmentPost;
 import rob.instagramapprealdemo.TabLayoutPackage.ViewPagerAdapter;
 
-public class MainActivity extends MainHelperClass {
+public class MainActivity extends MainHelperClass{
 
 
     private static final int REQUEST_CODE_GALLERY = 999;
@@ -46,6 +50,8 @@ public class MainActivity extends MainHelperClass {
     private void initialComponentLayout() {
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.view_pager);
+
+
 
     }
 
@@ -76,3 +82,6 @@ public class MainActivity extends MainHelperClass {
 
 
 }
+
+
+

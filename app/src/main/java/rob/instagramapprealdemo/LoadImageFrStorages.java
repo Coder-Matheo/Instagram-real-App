@@ -172,7 +172,7 @@ public class LoadImageFrStorages extends AppCompatActivity {
     }
 
     public void insertPostsFun(){
-        InstaObj instaObj = new InstaObj("Mattio", "123456", "Heute war sehr Cool", loadEditTextMultiLine.getText().toString(), "11.12.2001", imageViewToByte(loadImageButton));
+        InstaObj instaObj = new InstaObj("Mattio", "123456", loadEditTextMultiLine.getText().toString(), loadEditTextMultiLine.getText().toString(), "11.12.2001", imageViewToByte(loadImageButton));
         InsertAsynTask insertAsynTask = new InsertAsynTask();
         insertAsynTask.execute(instaObj);
 

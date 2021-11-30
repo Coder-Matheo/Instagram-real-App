@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
     List<Fragment> lstFragments = new ArrayList<>();
@@ -38,4 +39,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         lstFragments.add(fragment);
         lstTitles.add(titleName);
     }
+
+
+
 }

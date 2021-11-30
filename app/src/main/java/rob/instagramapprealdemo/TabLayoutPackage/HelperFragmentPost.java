@@ -7,7 +7,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +18,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import java.io.ByteArrayOutputStream;
 
 import rob.instagramapprealdemo.LoadImageFrStorages;
 import rob.instagramapprealdemo.R;
-import rob.instagramapprealdemo.roomDatabase.InstaObj;
-import rob.instagramapprealdemo.roomDatabase.MyInstaDatabase;
 
 public class HelperFragmentPost extends Fragment {
     private static final String TAG = HelperFragmentPost.class.getSimpleName();
@@ -74,18 +72,11 @@ public class HelperFragmentPost extends Fragment {
     void initFlaotActionButton(View view, FragmentActivity context) {
         floatingActionButton = view.findViewById(R.id.fab_button_id);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-
-
-
                 Intent intent = new Intent(context, LoadImageFrStorages.class);
                 startActivity(intent);
                 //popUpLoadImageFromStorages();
-
-
-
 
             }
         });
