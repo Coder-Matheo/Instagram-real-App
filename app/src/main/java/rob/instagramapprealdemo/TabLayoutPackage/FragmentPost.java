@@ -34,7 +34,6 @@ public class FragmentPost extends HelperFragmentPost implements RecyclerViewClic
     View view;
     private RecyclerView recyclerView;
     private List<struct> lstPostData;
-    Context context;
     RecyclerViewAdapter recyclerViewAdapter;
     InstaViewModel instaViewModel;
 
@@ -55,8 +54,6 @@ public class FragmentPost extends HelperFragmentPost implements RecyclerViewClic
 
         initFlaotActionButton(view, getActivity());
 
-
-
         // Inflate the layout for this fragment
         return view;
     }
@@ -76,22 +73,17 @@ public class FragmentPost extends HelperFragmentPost implements RecyclerViewClic
 
         //DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
         //recyclerView.addItemDecoration(dividerItemDecoration);
-
-
     }
-
-
-
 
 
     @Override
     public void onItemClickInterface(int position) {
-        Toast.makeText(getContext(), "Item Interface"+position+ lstPostData.get(position).getUsername(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "onItemClickInterface"+position+ lstPostData.get(position).getUsername(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onLongItemClickInterface(int position) {
-        Toast.makeText(getContext(), "Long Interface", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "onLongItemClickInterface ", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -102,7 +94,6 @@ public class FragmentPost extends HelperFragmentPost implements RecyclerViewClic
         instaViewModel.getAllPosts().observe(this, new Observer<List<InstaObj>>() {
             @Override
             public void onChanged(List<InstaObj> instaObjs) {
-
 
                 for (int i = 0; i < instaObjs.size(); i++){
                     lstPostData.add(new struct(instaObjs.get(i).getUsername(), instaObjs.get(i).getComments(), instaObjs.get(i).getInstaImage()));

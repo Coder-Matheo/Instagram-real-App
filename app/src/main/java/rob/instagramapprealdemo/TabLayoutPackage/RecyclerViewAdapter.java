@@ -39,6 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     }
 
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -54,7 +55,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.tv_username.setText(mData.get(position).getUsername());
         holder.tv_post_message.setText(mData.get(position).getPostMessage());
         holder.img_post.setImageBitmap(byteImageToBitmap(mData.get(position).getImagePosts()));
-        Log.i(TAG, "onBindViewHolder: "+mData.get(position).getPostMessage());
+
 
     }
 

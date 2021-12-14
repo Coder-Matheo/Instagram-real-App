@@ -1,29 +1,13 @@
 package rob.instagramapprealdemo;
 
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 import rob.instagramapprealdemo.TabLayoutPackage.FragmentCalling;
 import rob.instagramapprealdemo.TabLayoutPackage.FragmentPost;
@@ -51,8 +35,6 @@ public class MainActivity extends MainHelperClass{
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.view_pager);
 
-
-
     }
 
 
@@ -62,16 +44,18 @@ public class MainActivity extends MainHelperClass{
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        viewPagerAdapter.AddFragment(new FragmentPost(this), "Call");
-        viewPagerAdapter.AddFragment(new FragmentCalling(), "Post");
-        viewPagerAdapter.AddFragment(new FragmentPost(this), "Photo");
+        viewPagerAdapter.AddFragment(new FragmentPost(this), "Post");
+        viewPagerAdapter.AddFragment(new FragmentCalling(), "Call");
+        //viewPagerAdapter.AddFragment(new FragmentPost(this), "Setting");
 
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_post_message);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_add);
+        //tabLayout.getTabAt(2).setIcon(R.drawable.ic_add);
+
+
 
 
         ActionBar actionBar = getSupportActionBar();
