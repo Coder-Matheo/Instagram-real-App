@@ -3,15 +3,19 @@ package rob.instagramapprealdemo;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 
 import rob.instagramapprealdemo.TabLayoutPackage.FragmentCalling;
 import rob.instagramapprealdemo.TabLayoutPackage.FragmentPost;
 import rob.instagramapprealdemo.TabLayoutPackage.ViewPagerAdapter;
+import rob.instagramapprealdemo.storyPackage.StoryAdapter;
 
 public class MainActivity extends MainHelperClass{
 
@@ -21,19 +25,60 @@ public class MainActivity extends MainHelperClass{
     ViewPagerAdapter viewPagerAdapter;
     ViewPager viewPager;
 
+    StoryAdapter storyAdapter;
+    ViewPager2 storyViewPager;
+    int [] imagesStory = {R.drawable.fran1,R.drawable.fran2,R.drawable.fran3,R.drawable.fran4,
+            R.drawable.fran1,R.drawable.fran2,R.drawable.fran3,R.drawable.fran4,
+            R.drawable.fran1,R.drawable.fran2,R.drawable.fran3,R.drawable.fran4,
+            R.drawable.fran1,R.drawable.fran2,R.drawable.fran3,R.drawable.fran4,
+            R.drawable.fran1,R.drawable.fran2,R.drawable.fran3,R.drawable.fran4
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
+
+
         initialComponentLayout();
         initTabLayout_Adapter_viewPager();
+        storyViewPager();
+    }
+
+    private void storyViewPager() {
+        storyViewPager = findViewById(R.id.viewPager2);
+        storyAdapter = new StoryAdapter(imagesStory);
+        storyViewPager.setAdapter(storyAdapter);
+
+        storyViewPager.setClipChildren(false);
+        storyViewPager.setClipToPadding(false);
+        storyViewPager.setOffscreenPageLimit(10);
+        storyViewPager.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+
+        storyViewPager.setAdapter(storyAdapter);
+
+        CompositePageTransformer transformer = new CompositePageTransformer();
+        transformer.addTransformer(new MarginPageTransformer(8));
+        transformer.addTransformer(new ViewPager2.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                float v = 1 - Math.abs(position);
+                //Set scale y
+                page.setScaleY(0.8f + v * 0.2f);
+            }
+        });
+        storyViewPager.setPageTransformer(transformer);
+
     }
 
     private void initialComponentLayout() {
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.view_pager);
+
+
+
 
     }
 

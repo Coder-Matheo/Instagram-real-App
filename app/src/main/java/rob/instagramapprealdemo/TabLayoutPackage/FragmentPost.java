@@ -2,25 +2,17 @@ package rob.instagramapprealdemo.TabLayoutPackage;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.List;
 import rob.instagramapprealdemo.R;
@@ -39,6 +31,7 @@ public class FragmentPost extends HelperFragmentPost implements RecyclerViewClic
 
 
 
+
     public FragmentPost(Context context) {
         super(context);
     }
@@ -54,6 +47,9 @@ public class FragmentPost extends HelperFragmentPost implements RecyclerViewClic
 
         initFlaotActionButton(view, getActivity());
 
+
+
+
         // Inflate the layout for this fragment
         return view;
     }
@@ -66,6 +62,7 @@ public class FragmentPost extends HelperFragmentPost implements RecyclerViewClic
         super.onCreate(savedInstanceState);
 
         setValueToRecycler();
+        setValueToStoryRecycler();
 
         //initial the List Array for putting Value for RecyclerAdapter
         lstPostData = new ArrayList<>();
@@ -73,6 +70,11 @@ public class FragmentPost extends HelperFragmentPost implements RecyclerViewClic
 
         //DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
         //recyclerView.addItemDecoration(dividerItemDecoration);
+    }
+
+    private void setValueToStoryRecycler() {
+
+
     }
 
 

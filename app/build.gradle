@@ -65,4 +65,7 @@ dependencies {
 
     //Floating Button
     implementation 'com.getbase:floatingactionbutton:1.10.1'
+
+    //ViewPager2 Library
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 }
