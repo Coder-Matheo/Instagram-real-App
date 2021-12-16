@@ -66,7 +66,8 @@ public class MainActivity extends MainHelperClass{
             public void transformPage(@NonNull View page, float position) {
                 float v = 1 - Math.abs(position);
                 //Set scale y
-                page.setScaleY(0.8f + v * 0.2f);
+                page.setScaleY(0.8f + v * 0.4f);
+                page.setScaleX(0.8f + v * 0.4f);
             }
         });
         storyViewPager.setPageTransformer(transformer);
