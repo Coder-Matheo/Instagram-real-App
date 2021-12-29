@@ -3,7 +3,7 @@
     package="rob.instagramapprealdemo">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InstagramAppRealDemo">
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".LoadImageFrStorages"
             android:exported="false" />

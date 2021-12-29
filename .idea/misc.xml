@@ -4,7 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Instagram-real-App/app/src/main/res/drawable/border.xml" value="0.2109375" />
-        <entry key="..\:/Instagram-real-App/app/src/main/res/layout/activity_main.xml" value="0.2644927536231884" />
+        <entry key="..\:/Instagram-real-App/app/src/main/res/drawable/color_cursor.xml" value="0.2557291666666667" />
+        <entry key="..\:/Instagram-real-App/app/src/main/res/drawable/round_item.xml" value="0.2557291666666667" />
+        <entry key="..\:/Instagram-real-App/app/src/main/res/drawable/rounded_image_shape.xml" value="0.2557291666666667" />
+        <entry key="..\:/Instagram-real-App/app/src/main/res/layout/activity_login.xml" value="0.23958333333333334" />
+        <entry key="..\:/Instagram-real-App/app/src/main/res/layout/activity_main.xml" value="0.23596014492753623" />
+        <entry key="..\:/Instagram-real-App/app/src/main/res/layout/dialog_load_image.xml" value="0.35052083333333334" />
+        <entry key="..\:/Instagram-real-App/app/src/main/res/layout/fragment_calling.xml" value="0.35052083333333334" />
         <entry key="..\:/Instagram-real-App/app/src/main/res/layout/fragment_post.xml" value="0.20108695652173914" />
         <entry key="..\:/Instagram-real-App/app/src/main/res/layout/item_post.xml" value="0.23550724637681159" />
         <entry key="..\:/Instagram-real-App/app/src/main/res/layout/load_image_storage.xml" value="0.20108695652173914" />

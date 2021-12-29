@@ -1,5 +1,6 @@
 package rob.instagramapprealdemo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -41,6 +42,7 @@ public class MainActivity extends MainHelperClass{
 
 
 
+        //startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
         initialComponentLayout();
         initTabLayout_Adapter_viewPager();
