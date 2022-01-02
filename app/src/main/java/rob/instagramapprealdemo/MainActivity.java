@@ -42,7 +42,7 @@ public class MainActivity extends MainHelperClass{
 
 
 
-        //startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
         initialComponentLayout();
         initTabLayout_Adapter_viewPager();
